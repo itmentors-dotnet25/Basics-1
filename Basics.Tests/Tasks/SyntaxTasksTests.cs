@@ -156,7 +156,7 @@ public class SyntaxTasksTests
     }
 
     [Theory]
-    [InlineData(1, 0, 1, new double[] { -1 })] // x + 1 = 0
+    [InlineData(0, 1, 1, new double[] { -1 })] // x + 1 = 0
     [InlineData(1, -3, 2, new double[] { 1, 2 })] // x² - 3x + 2 = 0
     [InlineData(1, 2, 1, new double[] { -1 })] // x² + 2x + 1 = 0 (один корень)
     [InlineData(1, 0, 1, new double[0])] // x² + 1 = 0 (нет действительных корней)

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Collections.Immutable;
+
 namespace Basics.Tasks;
 
 public class CollectionTasks
@@ -7,7 +10,7 @@ public class CollectionTasks
     /// </summary>
     public IEnumerable<int> FilterEvenNumbers(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Where(n => n % 2 == 0);
     }
 
     /// <summary>
@@ -15,7 +18,22 @@ public class CollectionTasks
     /// </summary>
     public Dictionary<string, int> CountWords(string text)
     {
-        throw new NotImplementedException();
+        var words = text.Split([' ', '\t', '\n'], System.StringSplitOptions.RemoveEmptyEntries);
+        Dictionary<string, int> result = new Dictionary<string, int>();
+
+        foreach (var word in words)
+        {
+
+            if (!string.IsNullOrWhiteSpace(word))
+            {
+                if (result.ContainsKey(word))
+                    result[word]++;
+                else
+                    result.Add(word, 1);
+            }
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -23,7 +41,8 @@ public class CollectionTasks
     /// </summary>
     public List<string> SortByLength(List<string> strings)
     {
-        throw new NotImplementedException();
+        strings.Sort((a, b) => a.Length.CompareTo(b.Length));
+        return strings;
     }
 
     /// <summary>
@@ -31,7 +50,10 @@ public class CollectionTasks
     /// </summary>
     public IEnumerable<int> GetUniqueElements(IEnumerable<int> first, IEnumerable<int> second)
     {
-        throw new NotImplementedException();
+        var hashFirst = new HashSet<int>(first);
+        var hashSecond = new HashSet<int>(second);
+        hashFirst.SymmetricExceptWith(hashSecond);
+        return hashFirst;
     }
 
     /// <summary>
@@ -39,7 +61,9 @@ public class CollectionTasks
     /// </summary>
     public Dictionary<bool, List<int>> GroupByEvenOdd(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        var groupedNumbers = numbers.GroupBy(num => num % 2 == 0);
+
+        return groupedNumbers.ToDictionary(group => group.Key, group => group.ToList());
     }
 
     /// <summary>
@@ -47,7 +71,7 @@ public class CollectionTasks
     /// </summary>
     public bool AllElementsSatisfyCondition(IEnumerable<int> numbers, Func<int, bool> predicate)
     {
-        throw new NotImplementedException();
+        return numbers.All(predicate);
     }
 
     /// <summary>
@@ -55,7 +79,7 @@ public class CollectionTasks
     /// </summary>
     public IEnumerable<int> TakeFirstNElements(IEnumerable<int> numbers, int n)
     {
-        throw new NotImplementedException();
+        return numbers.Take(n);
     }
 
     /// <summary>
@@ -63,6 +87,9 @@ public class CollectionTasks
     /// </summary>
     public (int min, int max) FindMinMax(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        var minValue = numbers.Min();   // Минимальное значение
+        var maxValue = numbers.Max();   // Максимальное значение
+
+        return (minValue, maxValue);
     }
 }

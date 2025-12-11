@@ -8,7 +8,14 @@ public class ExceptionHandlingTasks
     /// </summary>
     public double SafeDivide(double a, double b)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return a / b;
+        }
+        catch (DivideByZeroException)
+        {
+            return 0;
+        }
     }
 
     /// <summary>
@@ -16,7 +23,14 @@ public class ExceptionHandlingTasks
     /// </summary>
     public int? ParseStringToInt(string input)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return Convert.ToInt32(input);
+        }
+        catch (FormatException)
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -27,14 +41,29 @@ public class ExceptionHandlingTasks
     /// </summary>
     public void ValidatePositiveNumber(int number)
     {
-        throw new NotImplementedException();
+        if (number < 0)
+        {
+            throw new NegativeNumberException("Число должно быть неотрицательным.");
+        }
     }
 
     /// <summary>
     /// Задание 4.5: Напишите метод с использованием try-catch-finally
     /// </summary>
-    public string TryFinallyExample()
+    /// Нету теста для метода
+    public string TryFinallyExample(int input)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return Convert.ToString(input);
+        }
+        catch (FormatException)
+        {
+            return "Строку нельзя привести к int16";
+        }
+        finally
+        {
+            Console.WriteLine("Метод завершился.");
+        }
     }
 }
