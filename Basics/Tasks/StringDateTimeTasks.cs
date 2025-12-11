@@ -1,3 +1,7 @@
+using System.Text;
+using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
+
 namespace Basics.Tasks;
 
 public class StringDateTimeTasks
@@ -7,15 +11,27 @@ public class StringDateTimeTasks
     /// </summary>
     public string ReverseString(string input)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(input)) return input;
+        char[] reverseString = input.ToCharArray();
+        Array.Reverse(reverseString);
+        return new String(reverseString);
     }
 
     /// <summary>
     /// Задание 5.2: Напишите метод, который проверяет, является ли строка палиндромом.
     /// </summary>
+    /// Было в задании 1.6
     public bool IsPalindrome(string input)
     {
-        throw new NotImplementedException();
+        if (input == "") return true;
+        input = Regex.Replace(input.ToLower().Trim(), @"\s+", "");
+        int count = input.Length;
+        foreach (char ch in input)
+        {
+            count--;
+            if (ch == input[count]) continue; else return false;
+        }
+        return true;
     }
 
     /// <summary>
@@ -23,7 +39,12 @@ public class StringDateTimeTasks
     /// </summary>
     public string ConcatenateStrings(string[] strings)
     {
-        throw new NotImplementedException();
+        StringBuilder result = new StringBuilder();
+        foreach (var word in strings)
+        {
+            result.Append(word);
+        }
+        return result.ToString();
     }
 
     /// <summary>
@@ -31,7 +52,8 @@ public class StringDateTimeTasks
     /// </summary>
     public int CalculateAge(DateTime birthDate)
     {
-        throw new NotImplementedException();
+        DateTime today = DateTime.Today;
+        return today.Year - birthDate.Year;
     }
 
     /// <summary>
@@ -39,7 +61,7 @@ public class StringDateTimeTasks
     /// </summary>
     public int GetDaysDifference(DateTime first, DateTime second)
     {
-        throw new NotImplementedException();
+        return (int)(second - first).TotalDays;
     }
 
     /// <summary>
@@ -47,15 +69,16 @@ public class StringDateTimeTasks
     /// </summary>
     public string FormatDate(DateTime date)
     {
-        throw new NotImplementedException();
+        return date.ToString("dd.MM.yyyy");
     }
-    
+
     /// <summary>
     /// Задание 5.7: Напишите метод, который разделяет строку на слова и возвращает массив слов.
     /// </summary>
     public string[] SplitIntoWords(string text)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(text)) return new string[0];
+        return text.Split(new[] { ' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries);
     }
 
     /// <summary>
@@ -63,7 +86,11 @@ public class StringDateTimeTasks
     /// </summary>
     public bool StartsWithSubstring(string text, string substring)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(text)) return true;
+        if (string.IsNullOrWhiteSpace(text)) return false;
+        if (string.IsNullOrWhiteSpace(substring)) return true;
+
+        return text.StartsWith(substring);
     }
 
     /// <summary>
@@ -71,7 +98,8 @@ public class StringDateTimeTasks
     /// </summary>
     public string RemoveSpaces(string text)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(text)) return "";
+        return text.Replace(" ", "");
     }
 
     /// <summary>
@@ -79,7 +107,16 @@ public class StringDateTimeTasks
     /// </summary>
     public string RepeatString(string text, int count)
     {
-        throw new NotImplementedException();
+        if (count <= 0 || string.IsNullOrEmpty(text)) return "";
+
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < count; i++)
+        {
+            result.Append(text);
+        }
+
+        return result.ToString();
     }
 
     /// <summary>
@@ -88,7 +125,7 @@ public class StringDateTimeTasks
     /// </summary>
     public (int hours, int minutes) GetTimeDifference(DateTime first, DateTime second)
     {
-        throw new NotImplementedException();
+        return (Math.Abs((second - first).Hours), Math.Abs((second - first).Minutes));
     }
 
     /// <summary>
@@ -96,6 +133,7 @@ public class StringDateTimeTasks
     /// </summary>
     public string ConvertToUpper(string text)
     {
-        throw new NotImplementedException();
+        StringBuilder result = new StringBuilder(text);
+        return result.ToString().ToUpper();
     }
 }

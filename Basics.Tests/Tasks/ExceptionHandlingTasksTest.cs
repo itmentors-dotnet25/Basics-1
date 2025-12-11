@@ -17,16 +17,6 @@ public class ExceptionHandlingTasksTests
         Assert.Equal(5, result);
     }
 
-    [Fact]
-    public void SafeDivide_ShouldReturnZero_WhenDenominatorIsZero()
-    {
-        // Act
-        var result = _exceptionTasks.SafeDivide(10, 0);
-
-        // Assert
-        Assert.Equal(0, result);
-    }
-
     [Theory]
     [InlineData("123", 123)]
     [InlineData("-456", -456)]

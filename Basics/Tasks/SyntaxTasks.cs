@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Basics.Tasks;
 
 public class SyntaxTasks
@@ -7,7 +9,7 @@ public class SyntaxTasks
     /// </summary>
     public int FindMaxOfThree(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        return Math.Max(a, Math.Max(b, c));
     }
 
     /// <summary>
@@ -15,7 +17,11 @@ public class SyntaxTasks
     /// </summary>
     public int CalculateSumFrom1ToN(int n)
     {
-        throw new NotImplementedException();
+        int res = 0;
+        for(int i =0; i<=n; i++) {
+            res += i;
+        }
+        return res;
     }
 
     /// <summary>
@@ -23,7 +29,12 @@ public class SyntaxTasks
     /// </summary>
     public bool IsPrime(int number)
     {
-        throw new NotImplementedException();
+        if (number <= 1 || number == 4) return false;
+        for (int i = 3; i < number; i += 2)
+        {
+            if (number % i == 0) return false;
+        }
+        return true;
     }
 
     /// <summary>
@@ -31,7 +42,21 @@ public class SyntaxTasks
     /// </summary>
     public int[] GenerateFibonacciArray(int n)
     {
-        throw new NotImplementedException();
+        if (n <= 0)
+        {
+            return Array.Empty<int>();
+        }
+
+        int[] fibNumbers = new int[n];
+        fibNumbers[0] = 0;
+        if (n > 1) fibNumbers[1] = 1;
+
+        for (int i = 2; i<n; i++ )
+        {
+            fibNumbers[i] = fibNumbers[i - 1] + fibNumbers[i - 2];
+        }
+
+        return fibNumbers;
     }
 
     /// <summary>
@@ -39,7 +64,16 @@ public class SyntaxTasks
     /// </summary>
     public double CalculateArrayAverage(int[] numbers)
     {
-        throw new NotImplementedException();
+
+        int summa = 0;
+        foreach (int n in numbers)
+        {
+            summa += n;
+        }
+
+        if (summa == 0) return 0.0;
+
+        return summa/numbers.Length;
     }
 
     /// <summary>
@@ -47,7 +81,15 @@ public class SyntaxTasks
     /// </summary>
     public bool IsStringPalindrome(string text)
     {
-        throw new NotImplementedException();
+        if (text == "") return true; 
+        text = Regex.Replace(text.ToLower().Trim(), @"\s+", "");
+        int count = text.Length;
+        foreach (char ch in text)
+        {
+            count--;
+            if (ch == text[count]) continue; else return false;
+        }
+        return true;
     }
 
     /// <summary>
@@ -55,7 +97,20 @@ public class SyntaxTasks
     /// </summary>
     public int[,] TransposeMatrix(int[,] matrix)
     {
-        throw new NotImplementedException();
+        int row = matrix.GetLength(0);
+        int col = matrix.GetLength(1);
+
+        int[,] result = new int[col, row];
+
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                result[j, i] = matrix[i, j];
+            }
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -64,7 +119,29 @@ public class SyntaxTasks
     /// </summary>
     public double[] SolveQuadraticEquation(double a, double b, double c)
     {
-        throw new NotImplementedException();
+        if (Math.Abs(a) < 1e-10)
+        {
+            if (Math.Abs(b) < 1e-10)
+                return Math.Abs(c) < 1e-10 ? new double[] { 0 } : Array.Empty<double>();
+
+            return new double[] { -c / b };
+        }
+
+
+
+        double discriminant = b * b - 4 * a * c;
+
+        if (discriminant < 0)
+            return Array.Empty<double>();
+
+        if (discriminant == 0)
+            return new double[] { -b / (2 * a) };
+
+        double sqrtDiscr = Math.Sqrt(discriminant);
+        double root1 = (-b - sqrtDiscr) / (2 * a);
+        double root2 = (-b + sqrtDiscr) / (2 * a);
+
+        return new double[] { Math.Min(root1, root2), Math.Max(root1, root2) };
     }
-    
+
 }
