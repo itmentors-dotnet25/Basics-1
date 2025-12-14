@@ -5,7 +5,7 @@ namespace Basics.Test.Tasks;
 
 public class DogTests
 {
-    private readonly Dog _dog = new("Мухтар");
+    private readonly Dog _dog = new("Шарик");
 
     [Fact]
     public void Extend_Animal()
