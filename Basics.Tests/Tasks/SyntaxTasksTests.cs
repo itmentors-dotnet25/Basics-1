@@ -166,7 +166,7 @@ public class SyntaxTasksTests
     public void SolveQuadraticEquation_ShouldReturnCorrectRoots(double a, double b, double c, double[] expected)
     {
         // Act
-        var result = _syntaxTasks.SolveQuadraticEquation(a, b, c);
+        var result = SyntaxTasks.SolveQuadraticEquation(a, b, c);
 
         // Assert
         Assert.Equal(expected, result);
@@ -179,7 +179,7 @@ public class SyntaxTasksTests
         double a = 0, b = 2, c = 4;
 
         // Act
-        var result = _syntaxTasks.SolveQuadraticEquation(a, b, c);
+        var result = SyntaxTasks.SolveQuadraticEquation(a, b, c);
 
         // Assert
         Assert.Single(result);
@@ -193,7 +193,7 @@ public class SyntaxTasksTests
         double a = 1, b = 0, c = 1; // x² + 1 = 0
 
         // Act
-        var result = _syntaxTasks.SolveQuadraticEquation(a, b, c);
+        var result = SyntaxTasks.SolveQuadraticEquation(a, b, c);
 
         // Assert
         Assert.Empty(result);
