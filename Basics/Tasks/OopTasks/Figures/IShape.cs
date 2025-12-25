@@ -1,4 +1,4 @@
-namespace Basics.Tasks.OopTasks;
+namespace Basics.Tasks.OopTasks.Figures;
 
 public interface IShape
 {

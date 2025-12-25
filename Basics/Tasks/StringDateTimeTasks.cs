@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Basics.Tasks;
 
 public class StringDateTimeTasks
@@ -7,7 +9,7 @@ public class StringDateTimeTasks
     /// </summary>
     public string ReverseString(string input)
     {
-        throw new NotImplementedException();
+        return new string(input.Reverse().ToArray());
     }
 
     /// <summary>
@@ -15,7 +17,7 @@ public class StringDateTimeTasks
     /// </summary>
     public bool IsPalindrome(string input)
     {
-        throw new NotImplementedException();
+       return new SyntaxTasks().IsStringPalindromeUseLinq(input);
     }
 
     /// <summary>
@@ -23,7 +25,14 @@ public class StringDateTimeTasks
     /// </summary>
     public string ConcatenateStrings(string[] strings)
     {
-        throw new NotImplementedException();
+        var sb = new StringBuilder();
+        
+        foreach (var str in strings)
+        {
+            sb.Append(str);
+        }
+        
+        return sb.ToString();
     }
 
     /// <summary>
@@ -31,7 +40,12 @@ public class StringDateTimeTasks
     /// </summary>
     public int CalculateAge(DateTime birthDate)
     {
-        throw new NotImplementedException();
+        var today = DateTime.Now;
+        var birthDateYear = birthDate.Year;
+        
+        return birthDateYear > today.Year
+            ? 0
+            : today.Year - birthDateYear;
     }
 
     /// <summary>
@@ -39,7 +53,7 @@ public class StringDateTimeTasks
     /// </summary>
     public int GetDaysDifference(DateTime first, DateTime second)
     {
-        throw new NotImplementedException();
+        return Math.Abs((second.Date - first.Date).Days);
     }
 
     /// <summary>
@@ -47,7 +61,7 @@ public class StringDateTimeTasks
     /// </summary>
     public string FormatDate(DateTime date)
     {
-        throw new NotImplementedException();
+        return date.ToString("dd.MM.yyyy");
     }
     
     /// <summary>
@@ -55,7 +69,15 @@ public class StringDateTimeTasks
     /// </summary>
     public string[] SplitIntoWords(string text)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(text))
+            return Array.Empty<string>();
+        // Возврат ответа на null вместо исключения ArgumentNullException.ThrowIfNull(text);
+        // зависит от контекста. Здесь допустил получение null - как нормальное поведение.
+
+        return text.Split(
+            [' ', '\t', '\n', '\r'],
+            StringSplitOptions.RemoveEmptyEntries
+        );
     }
 
     /// <summary>
@@ -63,7 +85,9 @@ public class StringDateTimeTasks
     /// </summary>
     public bool StartsWithSubstring(string text, string substring)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(text, nameof(text));
+        
+        return text.StartsWith(substring, StringComparison.CurrentCulture);
     }
 
     /// <summary>
@@ -71,7 +95,9 @@ public class StringDateTimeTasks
     /// </summary>
     public string RemoveSpaces(string text)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(text, nameof(text));
+        
+        return text.Replace(" ", "");
     }
 
     /// <summary>
@@ -79,7 +105,14 @@ public class StringDateTimeTasks
     /// </summary>
     public string RepeatString(string text, int count)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(text, nameof(text));
+        
+        var sb = new StringBuilder();
+
+        for (var i = 0; i < count; i++)
+            sb.Append(text);
+        
+        return sb.ToString();
     }
 
     /// <summary>
@@ -88,7 +121,12 @@ public class StringDateTimeTasks
     /// </summary>
     public (int hours, int minutes) GetTimeDifference(DateTime first, DateTime second)
     {
-        throw new NotImplementedException();
+        var diff = first - second;
+        
+        return (
+            Math.Abs(diff.Hours),
+            Math.Abs(diff.Minutes)
+        );
     }
 
     /// <summary>
@@ -96,6 +134,8 @@ public class StringDateTimeTasks
     /// </summary>
     public string ConvertToUpper(string text)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(text, nameof(text));
+        
+        return text.ToUpper();
     }
 }

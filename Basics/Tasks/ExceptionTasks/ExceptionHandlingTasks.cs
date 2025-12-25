@@ -1,3 +1,7 @@
+using System.Text;
+using Basics.Exceptions;
+using Microsoft.VisualBasic;
+
 namespace Basics.Tasks;
 
 public class ExceptionHandlingTasks
@@ -8,7 +12,11 @@ public class ExceptionHandlingTasks
     /// </summary>
     public double SafeDivide(double a, double b)
     {
-        throw new NotImplementedException();
+        var result = a / b;
+        
+        return (double.IsNaN(result) || double.IsInfinity(result)) 
+            ? 0 
+            : result;
     }
 
     /// <summary>
@@ -16,7 +24,17 @@ public class ExceptionHandlingTasks
     /// </summary>
     public int? ParseStringToInt(string input)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return int.Parse(input);
+        }
+        catch (FormatException ex)
+        {
+            //TODO Логировать ошибку ex.Message
+            Console.WriteLine(ex.Message);
+            
+            return null;
+        }
     }
 
     /// <summary>
@@ -27,7 +45,8 @@ public class ExceptionHandlingTasks
     /// </summary>
     public void ValidatePositiveNumber(int number)
     {
-        throw new NotImplementedException();
+        if (number < 0)
+            throw new NegativeNumberException(paramName: nameof(number));
     }
 
     /// <summary>
@@ -35,6 +54,23 @@ public class ExceptionHandlingTasks
     /// </summary>
     public string TryFinallyExample()
     {
-        throw new NotImplementedException();
+        var sb = new StringBuilder();
+        
+        try
+        {
+            var a = 5;
+            var b = 0;
+            var result = a / b;
+        }
+        catch (Exception ex)
+        {
+            sb.Append($"Error: {ex.Message}");
+        }
+        finally
+        {
+            sb.Append("Info: Попытка использования конструкции try-catch-finally успешна.");
+        }
+
+        return sb.ToString();
     }
 }
