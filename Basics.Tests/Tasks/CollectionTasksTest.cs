@@ -34,12 +34,27 @@ public class CollectionTasksTests
         Assert.Equal(1, result["world"]);
         Assert.Equal(1, result["test"]);
     }
+    
+    [Fact]
+    public void CountWordsUseRegEx_ShouldReturnCorrectWordCounts()
+    {
+        // Arrange
+        var text = "Hello, world hello-test";
+
+        // Act
+        var result = _collectionTasks.CountWordsUseRegEx(text);
+
+        // Assert
+        Assert.Equal(2, result["hello"]);
+        Assert.Equal(1, result["world"]);
+        Assert.Equal(1, result["test"]);
+    }
 
     [Fact]
     public void SortByLength_ShouldSortStringsByLength()
     {
         // Arrange
-        var strings = new List<string> { "longword", "a", "medium" };
+        var strings = new List<string> { "longword", "medium", "a" };
 
         // Act
         var result = _collectionTasks.SortByLength(strings);
@@ -57,6 +72,20 @@ public class CollectionTasksTests
 
         // Act
         var result = _collectionTasks.GetUniqueElements(first, second);
+
+        // Assert
+        Assert.Equal(new[] { 1, 2, 5, 6 }, result.OrderBy(x => x));
+    }
+    
+    [Fact]
+    public void GetUniqueElementsUseIterator_ShouldReturnUniqueElementsFromBothCollections()
+    {
+        // Arrange
+        var first = new[] { 1, 2, 3, 4, 4 };
+        var second = new[] { 3, 4, 5, 6 };
+
+        // Act
+        var result = _collectionTasks.GetUniqueElementsUseIterator(first, second);
 
         // Assert
         Assert.Equal(new[] { 1, 2, 5, 6 }, result.OrderBy(x => x));
