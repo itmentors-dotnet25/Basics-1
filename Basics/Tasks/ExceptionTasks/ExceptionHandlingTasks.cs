@@ -8,6 +8,9 @@ public class ExceptionHandlingTasks
     /// </summary>
     public double SafeDivide(double a, double b)
     {
+        if (b == 0)
+            return 0;
+        
         try
         {
             return a / b;
