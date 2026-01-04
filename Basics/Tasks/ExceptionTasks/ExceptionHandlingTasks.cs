@@ -8,7 +8,17 @@ public class ExceptionHandlingTasks
     /// </summary>
     public double SafeDivide(double a, double b)
     {
-        throw new NotImplementedException();
+        if (b == 0)
+            return 0;
+        
+        try
+        {
+            return a / b;
+        }
+        catch
+        {
+            return 0;
+        }
     }
 
     /// <summary>
@@ -16,7 +26,7 @@ public class ExceptionHandlingTasks
     /// </summary>
     public int? ParseStringToInt(string input)
     {
-        throw new NotImplementedException();
+        return int.TryParse(input, out int result) ? result : null;
     }
 
     /// <summary>
@@ -27,7 +37,10 @@ public class ExceptionHandlingTasks
     /// </summary>
     public void ValidatePositiveNumber(int number)
     {
-        throw new NotImplementedException();
+        if (number < 0)
+        {
+            throw new NegativeNumberException("Число не должно быть отрицательным!");
+        }
     }
 
     /// <summary>
@@ -35,6 +48,22 @@ public class ExceptionHandlingTasks
     /// </summary>
     public string TryFinallyExample()
     {
-        throw new NotImplementedException();
+        string result = "";
+
+        try
+        {
+            int value = int.Parse("invalid format");
+            result = $"Success: {value}";
+        }
+        catch (FormatException e)
+        {
+            result = $"Error: {e.Message}";
+        }
+        finally
+        {
+            result += " [finally executed]";
+        }
+
+        return result;
     }
 }
