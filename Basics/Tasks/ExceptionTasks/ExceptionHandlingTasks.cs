@@ -8,7 +8,14 @@ public class ExceptionHandlingTasks
     /// </summary>
     public double SafeDivide(double a, double b)
     {
-        return b == 0 ? 0 : a / b;
+        try
+        {
+            return a / b;
+        }
+        catch
+        {
+            return 0;
+        }
     }
 
     /// <summary>
@@ -16,14 +23,7 @@ public class ExceptionHandlingTasks
     /// </summary>
     public int? ParseStringToInt(string input)
     {
-        try
-        {
-            return int.Parse(input);
-        }
-        catch (FormatException)
-        {
-            return null;
-        }
+        return int.TryParse(input, out int result) ? result : null;
     }
 
     /// <summary>

@@ -71,7 +71,7 @@ public class SyntaxTasks
         if (numbers.Length == 0)
             return 0.0;
 
-        long sum = numbers.Aggregate<int, long>(0, (current, number) => current + number);
+        long sum = numbers.Sum();
 
         return (double)sum / numbers.Length;
     }
