@@ -14,7 +14,7 @@ public class CollectionTasksTests
         var numbers = new[] { 1, 2, 3, 4, 5, 6 };
 
         // Act
-        var result = _collectionTasks.FilterEvenNumbers(numbers);
+        var result = CollectionTasks.FilterEvenNumbers(numbers);
 
         // Assert
         Assert.Equal(new[] { 2, 4, 6 }, result);
@@ -42,7 +42,7 @@ public class CollectionTasksTests
         var strings = new List<string> { "longword", "a", "medium" };
 
         // Act
-        var result = _collectionTasks.SortByLength(strings);
+        var result = CollectionTasks.SortByLength(strings);
 
         // Assert
         Assert.Equal(new[] { "a", "medium", "longword" }, result);
@@ -56,7 +56,7 @@ public class CollectionTasksTests
         var second = new[] { 3, 4, 5, 6 };
 
         // Act
-        var result = _collectionTasks.GetUniqueElements(first, second);
+        var result = CollectionTasks.GetUniqueElements(first, second);
 
         // Assert
         Assert.Equal(new[] { 1, 2, 5, 6 }, result.OrderBy(x => x));

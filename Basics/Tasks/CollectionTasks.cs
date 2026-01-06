@@ -1,3 +1,6 @@
+using Microsoft.VisualBasic;
+using System.Collections.Generic;
+
 namespace Basics.Tasks;
 
 public class CollectionTasks
@@ -5,9 +8,9 @@ public class CollectionTasks
     /// <summary>
     /// Задание 2.1: Напишите метод, который фильтрует четные числа из коллекции.
     /// </summary>
-    public IEnumerable<int> FilterEvenNumbers(IEnumerable<int> numbers)
+    public static IEnumerable<int> FilterEvenNumbers(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Where(x => x % 2 == 0);
     }
 
     /// <summary>
@@ -15,23 +18,30 @@ public class CollectionTasks
     /// </summary>
     public Dictionary<string, int> CountWords(string text)
     {
-        throw new NotImplementedException();
+        return text
+            .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            .GroupBy(x => x)
+            .ToDictionary(group => group.Key, group => group.Count());
     }
 
     /// <summary>
     /// Задание 2.3: Напишите метод, который сортирует список строк по длине в порядке возрастания.
     /// </summary>
-    public List<string> SortByLength(List<string> strings)
+    public static List<string> SortByLength(List<string> strings)
     {
-        throw new NotImplementedException();
+        return strings
+            .OrderBy(x => x.Length)
+            .ToList();
     }
 
     /// <summary>
     /// Задание 2.4: Напишите метод, который возвращает все уникальные элементы из двух коллекций.
     /// </summary>
-    public IEnumerable<int> GetUniqueElements(IEnumerable<int> first, IEnumerable<int> second)
+    public static IEnumerable<int> GetUniqueElements(IEnumerable<int> first, IEnumerable<int> second)
     {
-        throw new NotImplementedException();
+        var onlyFirst = first.Except(second);
+        var onlySecond = second.Except(first);
+        return onlyFirst.Union(onlySecond); 
     }
 
     /// <summary>
@@ -55,7 +65,7 @@ public class CollectionTasks
     /// </summary>
     public IEnumerable<int> TakeFirstNElements(IEnumerable<int> numbers, int n)
     {
-        throw new NotImplementedException();
+        return numbers.Take(n);
     }
 
     /// <summary>
@@ -63,6 +73,11 @@ public class CollectionTasks
     /// </summary>
     public (int min, int max) FindMinMax(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+
+        var list = numbers.ToList();
+
+        int min = list.Min();
+        int max = list.Max();
+        return (min, max);
     }
 }
