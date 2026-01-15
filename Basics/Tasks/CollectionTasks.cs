@@ -7,7 +7,16 @@ public class CollectionTasks
     /// </summary>
     public IEnumerable<int> FilterEvenNumbers(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        var result = new List<int>();
+        foreach (int number in numbers)
+        {
+            if (number % 2 == 0)
+            {
+                result.Add(number);
+            }
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -15,7 +24,35 @@ public class CollectionTasks
     /// </summary>
     public Dictionary<string, int> CountWords(string text)
     {
-        throw new NotImplementedException();
+        var wordCounts = new Dictionary<string, int>();
+
+        if (string.IsNullOrEmpty(text))
+        {
+            return wordCounts;
+        }
+
+        string[] words = text.Split(' ');
+
+        foreach (string word in words)
+        {
+            if (string.IsNullOrEmpty(word))
+            {
+                continue;
+            }
+
+            string key = word.ToLower();
+
+            if (wordCounts.ContainsKey(key))
+            {
+                wordCounts[key]++;
+            }
+            else
+            {
+                wordCounts[key] = 1;
+            }
+        }
+
+        return wordCounts;
     }
 
     /// <summary>
@@ -23,7 +60,9 @@ public class CollectionTasks
     /// </summary>
     public List<string> SortByLength(List<string> strings)
     {
-        throw new NotImplementedException();
+        var result = new List<string>(strings);
+        result.Sort((a, b) => a.Length.CompareTo(b.Length));
+        return result;
     }
 
     /// <summary>
@@ -31,7 +70,27 @@ public class CollectionTasks
     /// </summary>
     public IEnumerable<int> GetUniqueElements(IEnumerable<int> first, IEnumerable<int> second)
     {
-        throw new NotImplementedException();
+        var set1 = new HashSet<int>(first);
+        var set2 = new HashSet<int>(second);
+        var result = new List<int>();
+
+        foreach (var item in set1)
+        {
+            if (!set2.Contains(item))
+            {
+                result.Add(item);
+            }
+        }
+
+        foreach (var item in set2)
+        {
+            if (!set1.Contains(item))
+            {
+                result.Add(item);
+            }
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -39,7 +98,18 @@ public class CollectionTasks
     /// </summary>
     public Dictionary<bool, List<int>> GroupByEvenOdd(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        var result = new Dictionary<bool, List<int>>
+        {
+            { true, new List<int>() },
+            { false, new List<int>() }
+        };
+
+        foreach (int number in numbers)
+        {
+            result[number % 2 == 0].Add(number);
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -47,7 +117,20 @@ public class CollectionTasks
     /// </summary>
     public bool AllElementsSatisfyCondition(IEnumerable<int> numbers, Func<int, bool> predicate)
     {
-        throw new NotImplementedException();
+        // if (predicate == null)
+        // {
+        //     throw new ArgumentNullException(nameof(predicate));
+        // }
+
+        foreach (int number in numbers)
+        {
+            if (!predicate(number))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -55,7 +138,21 @@ public class CollectionTasks
     /// </summary>
     public IEnumerable<int> TakeFirstNElements(IEnumerable<int> numbers, int n)
     {
-        throw new NotImplementedException();
+        var result = new List<int>();
+        int count = 0;
+
+        foreach (int number in numbers)
+        {
+            if (count >= n)
+            {
+                break;
+            }
+
+            result.Add(number);
+            count++;
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -63,6 +160,6 @@ public class CollectionTasks
     /// </summary>
     public (int min, int max) FindMinMax(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        return (numbers.Min(), numbers.Max());
     }
 }
