@@ -6,28 +6,47 @@ public class ExceptionHandlingTasks
     /// Задание 4.1: Напишите метод, который безопасно делит два числа с обработкой исключений.
     /// В случае исключения возвращайте 0.
     /// </summary>
-    public double SafeDivide(double a, double b)
+    public static double SafeDivide(double a, double b)
     {
-        throw new NotImplementedException();
+        if (b == 0.0)
+            return 0;
+        return (a / b);
+       
     }
 
     /// <summary>
     /// Задание 4.2: Напишите метод, который преобразует строку в число с обработкой FormatException.
     /// </summary>
-    public int? ParseStringToInt(string input)
+    public static int? ParseStringToInt(string input)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return int.Parse(input);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     /// <summary>
     /// Задание 4.3: Создайте собственное исключение NegativeNumberException
     /// </summary>
+     
+    public class NegativeNumberException : Exception
+    {
+        public NegativeNumberException(string massage) : base(massage) { }
+    }
+
     /// <summary>
     /// Задание 4.4: Напишите метод, который проверяет число на отрицательность и бросает исключение NegativeNumberException.
     /// </summary>
     public void ValidatePositiveNumber(int number)
     {
-        throw new NotImplementedException();
+        if (number < 0)
+        {
+            throw new NegativeNumberException($"Число {number} меньше ноля");
+        }
     }
 
     /// <summary>

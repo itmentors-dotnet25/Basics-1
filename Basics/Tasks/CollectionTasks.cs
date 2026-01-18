@@ -49,7 +49,9 @@ public class CollectionTasks
     /// </summary>
     public Dictionary<bool, List<int>> GroupByEvenOdd(IEnumerable<int> numbers)
     {
-        throw new NotImplementedException();
+        return numbers
+            .GroupBy(x => x % 2 == 0)
+            .ToDictionary(g => g.Key, g => g.ToList());
     }
 
     /// <summary>
@@ -57,7 +59,8 @@ public class CollectionTasks
     /// </summary>
     public bool AllElementsSatisfyCondition(IEnumerable<int> numbers, Func<int, bool> predicate)
     {
-        throw new NotImplementedException();
+        bool result = numbers.All(x => predicate(x));
+        return result;  
     }
 
     /// <summary>
