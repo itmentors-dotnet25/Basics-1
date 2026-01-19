@@ -1,3 +1,5 @@
+using Basics.Tasks.OopTasks.Animals;
+
 namespace Basics.Tasks;
 
 public class ExceptionHandlingTasks
@@ -8,7 +10,12 @@ public class ExceptionHandlingTasks
     /// </summary>
     public double SafeDivide(double a, double b)
     {
-        throw new NotImplementedException();
+        if (b == 0)
+        {
+            return 0;
+        }
+
+        return a / b;
     }
 
     /// <summary>
@@ -16,7 +23,14 @@ public class ExceptionHandlingTasks
     /// </summary>
     public int? ParseStringToInt(string input)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return int.Parse(input);
+        }
+        catch (FormatException)
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -27,7 +41,10 @@ public class ExceptionHandlingTasks
     /// </summary>
     public void ValidatePositiveNumber(int number)
     {
-        throw new NotImplementedException();
+        if (number < 0)
+        {
+            throw new NegativeNumberException();
+        }
     }
 
     /// <summary>
@@ -35,6 +52,32 @@ public class ExceptionHandlingTasks
     /// </summary>
     public string TryFinallyExample()
     {
-        throw new NotImplementedException();
+        string result = "";
+
+        try
+        {
+            var cat = new Cat("Матильда");
+            result = cat.MakeSound();
+
+            Console.WriteLine("Блок try");
+            //throw new InvalidOperationException(); 
+        }
+        catch (Exception)
+        {
+            var dog = new Cat("Рекс");
+            result = dog.MakeSound();
+
+            Console.WriteLine("Блок catch");
+            throw;
+        }
+        finally
+        {
+            var dog = new Cat("Шарик");
+            result = dog.MakeSound();
+
+            Console.WriteLine("Блок finally");
+        }
+
+        return result;
     }
 }
