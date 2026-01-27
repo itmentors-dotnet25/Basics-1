@@ -15,7 +15,7 @@ public class StringDateTimeTasksTests
     public void ReverseString_ShouldReturnReversedString(string input, string expected)
     {
         // Act
-        var result = _stringDateTimeTasks.ReverseString(input);
+        var result = StringDateTimeTasks.ReverseString(input);
 
         // Assert
         Assert.Equal(expected, result);
@@ -28,7 +28,7 @@ public class StringDateTimeTasksTests
     public void IsPalindrome_ShouldReturnCorrectResult(string input, bool expected)
     {
         // Act
-        var result = _stringDateTimeTasks.IsPalindrome(input);
+        var result = StringDateTimeTasks.IsPalindrome(input);
 
         // Assert
         Assert.Equal(expected, result);
@@ -41,7 +41,7 @@ public class StringDateTimeTasksTests
         var strings = new[] { "Hello", "World", "Test" };
 
         // Act
-        var result = _stringDateTimeTasks.ConcatenateStrings(strings);
+        var result = StringDateTimeTasks.ConcatenateStrings(strings);
 
         // Assert
         Assert.Equal("HelloWorldTest", result);
@@ -54,7 +54,7 @@ public class StringDateTimeTasksTests
         var birthDate = DateTime.Now.AddYears(-25).AddDays(-5);
 
         // Act
-        var result = _stringDateTimeTasks.CalculateAge(birthDate);
+        var result = StringDateTimeTasks.CalculateAge(birthDate);
 
         // Assert
         Assert.Equal(25, result);
@@ -68,7 +68,7 @@ public class StringDateTimeTasksTests
         var second = new DateTime(2023, 1, 10);
 
         // Act
-        var result = _stringDateTimeTasks.GetDaysDifference(first, second);
+        var result = StringDateTimeTasks.GetDaysDifference(first, second);
 
         // Assert
         Assert.Equal(9, result);
@@ -81,7 +81,7 @@ public class StringDateTimeTasksTests
         var date = new DateTime(2023, 12, 25);
 
         // Act
-        var result = _stringDateTimeTasks.FormatDate(date);
+        var result = StringDateTimeTasks.FormatDate(date);
 
         // Assert
         Assert.Equal("25.12.2023", result);
@@ -97,7 +97,7 @@ public class StringDateTimeTasksTests
     public void SplitIntoWords_ShouldSplitStringCorrectly(string text, string[] expected)
     {
         // Act
-        var result = _stringDateTimeTasks.SplitIntoWords(text);
+        var result = StringDateTimeTasks.SplitIntoWords(text);
 
         // Assert
         Assert.Equal(expected, result);
@@ -115,7 +115,7 @@ public class StringDateTimeTasksTests
     public void StartsWithSubstring_ShouldReturnCorrectResult(string text, string substring, bool expected)
     {
         // Act
-        var result = _stringDateTimeTasks.StartsWithSubstring(text, substring);
+        var result = StringDateTimeTasks.StartsWithSubstring(text, substring);
 
         // Assert
         Assert.Equal(expected, result);
@@ -131,7 +131,7 @@ public class StringDateTimeTasksTests
     public void RemoveSpaces_ShouldRemoveAllSpaces(string text, string expected)
     {
         // Act
-        var result = _stringDateTimeTasks.RemoveSpaces(text);
+        var result = StringDateTimeTasks.RemoveSpaces(text);
 
         // Assert
         Assert.Equal(expected, result);
@@ -147,7 +147,7 @@ public class StringDateTimeTasksTests
     public void RepeatString_ShouldRepeatStringCorrectly(string text, int count, string expected)
     {
         // Act
-        var result = _stringDateTimeTasks.RepeatString(text, count);
+        var result = StringDateTimeTasks.RepeatString(text, count);
 
         // Assert
         Assert.Equal(expected, result);
@@ -161,7 +161,7 @@ public class StringDateTimeTasksTests
         var second = new DateTime(2023, 1, 1, 14, 45, 0);
 
         // Act
-        var result = _stringDateTimeTasks.GetTimeDifference(first, second);
+        var result = StringDateTimeTasks.GetTimeDifference(first, second);
 
         // Assert
         Assert.Equal(4, result.hours);
@@ -176,7 +176,7 @@ public class StringDateTimeTasksTests
         var second = new DateTime(2023, 1, 1, 10, 30, 0);
 
         // Act
-        var result = _stringDateTimeTasks.GetTimeDifference(first, second);
+        var result = StringDateTimeTasks.GetTimeDifference(first, second);
 
         // Assert
         Assert.Equal(4, result.hours);
@@ -191,7 +191,7 @@ public class StringDateTimeTasksTests
         var second = new DateTime(2023, 1, 1, 10, 30, 0);
 
         // Act
-        var result = _stringDateTimeTasks.GetTimeDifference(first, second);
+        var result = StringDateTimeTasks.GetTimeDifference(first, second);
 
         // Assert
         Assert.Equal(0, result.hours);
@@ -206,7 +206,7 @@ public class StringDateTimeTasksTests
         var second = new DateTime(2023, 1, 2, 1, 30, 0);
 
         // Act
-        var result = _stringDateTimeTasks.GetTimeDifference(first, second);
+        var result = StringDateTimeTasks.GetTimeDifference(first, second);
 
         // Assert
         Assert.Equal(2, result.hours);
@@ -224,7 +224,7 @@ public class StringDateTimeTasksTests
     public void ConvertToUpper_ShouldConvertToUpperCase(string text, string expected)
     {
         // Act
-        var result = _stringDateTimeTasks.ConvertToUpper(text);
+        var result = StringDateTimeTasks.ConvertToUpper(text);
 
         // Assert
         Assert.Equal(expected, result);

@@ -16,7 +16,7 @@ public class SyntaxTasksTests
     public void FindMaxOfThree_ShouldReturnLargestNumber(int a, int b, int c, int expected)
     {
         // Act
-        var result = _syntaxTasks.FindMaxOfThree(a, b, c);
+        var result = SyntaxTasks.FindMaxOfThree(a, b, c);
 
         // Assert
         Assert.Equal(expected, result);
@@ -31,7 +31,7 @@ public class SyntaxTasksTests
     public void CalculateSumFrom1ToN_ShouldReturnCorrectSum(int n, int expected)
     {
         // Act
-        var result = _syntaxTasks.CalculateSumFrom1ToN(n);
+        var result = SyntaxTasks.CalculateSumFrom1ToN(n);
 
         // Assert
         Assert.Equal(expected, result);
@@ -50,7 +50,7 @@ public class SyntaxTasksTests
     public void IsPrime_ShouldReturnCorrectResult(int number, bool expected)
     {
         // Act
-        var result = _syntaxTasks.IsPrime(number);
+        var result = SyntaxTasks.IsPrime(number);
 
         // Assert
         Assert.Equal(expected, result);
@@ -65,7 +65,7 @@ public class SyntaxTasksTests
     public void GenerateFibonacciArray_ShouldReturnCorrectSequence(int n, int[] expected)
     {
         // Act
-        var result = _syntaxTasks.GenerateFibonacciArray(n);
+        var result = SyntaxTasks.GenerateFibonacciArray(n);
 
         // Assert
         Assert.Equal(expected, result);
@@ -81,7 +81,7 @@ public class SyntaxTasksTests
     public void CalculateArrayAverage_ShouldReturnCorrectAverage(int[] numbers, double expected)
     {
         // Act
-        var result = _syntaxTasks.CalculateArrayAverage(numbers);
+        var result = SyntaxTasks.CalculateArrayAverage(numbers);
 
         // Assert
         Assert.Equal(expected, result);
@@ -99,7 +99,7 @@ public class SyntaxTasksTests
     public void IsStringPalindrome_ShouldReturnCorrectResult(string text, bool expected)
     {
         // Act
-        var result = _syntaxTasks.IsStringPalindrome(text);
+        var result = SyntaxTasks.IsStringPalindrome(text);
 
         // Assert
         Assert.Equal(expected, result);
@@ -166,7 +166,7 @@ public class SyntaxTasksTests
     public void SolveQuadraticEquation_ShouldReturnCorrectRoots(double a, double b, double c, double[] expected)
     {
         // Act
-        var result = _syntaxTasks.SolveQuadraticEquation(a, b, c);
+        var result = SyntaxTasks.SolveQuadraticEquation(a, b, c);
 
         // Assert
         Assert.Equal(expected, result);
@@ -179,7 +179,7 @@ public class SyntaxTasksTests
         double a = 0, b = 2, c = 4;
 
         // Act
-        var result = _syntaxTasks.SolveQuadraticEquation(a, b, c);
+        var result = SyntaxTasks.SolveQuadraticEquation(a, b, c);
 
         // Assert
         Assert.Single(result);
@@ -193,7 +193,7 @@ public class SyntaxTasksTests
         double a = 1, b = 0, c = 1; // x² + 1 = 0
 
         // Act
-        var result = _syntaxTasks.SolveQuadraticEquation(a, b, c);
+        var result = SyntaxTasks.SolveQuadraticEquation(a, b, c);
 
         // Assert
         Assert.Empty(result);

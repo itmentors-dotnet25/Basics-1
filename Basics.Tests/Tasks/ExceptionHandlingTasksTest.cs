@@ -11,7 +11,7 @@ public class ExceptionHandlingTasksTests
     public void SafeDivide_ShouldReturnResult_WhenDenominatorIsNotZero()
     {
         // Act
-        var result = _exceptionTasks.SafeDivide(10, 2);
+        var result = ExceptionHandlingTasks.SafeDivide(10, 2);
 
         // Assert
         Assert.Equal(5, result);
@@ -21,7 +21,7 @@ public class ExceptionHandlingTasksTests
     public void SafeDivide_ShouldReturnZero_WhenDenominatorIsZero()
     {
         // Act
-        var result = _exceptionTasks.SafeDivide(10, 0);
+        var result = ExceptionHandlingTasks.SafeDivide(10, 0);
 
         // Assert
         Assert.Equal(0, result);
@@ -35,7 +35,7 @@ public class ExceptionHandlingTasksTests
     public void ParseStringToInt_ShouldHandleInvalidInput(string input, int? expected)
     {
         // Act
-        var result = _exceptionTasks.ParseStringToInt(input);
+        var result = ExceptionHandlingTasks.ParseStringToInt(input);
 
         // Assert
         Assert.Equal(expected, result);

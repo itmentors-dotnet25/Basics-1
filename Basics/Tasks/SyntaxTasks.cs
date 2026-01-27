@@ -1,3 +1,5 @@
+using System.Formats.Tar;
+
 namespace Basics.Tasks;
 
 public class SyntaxTasks
@@ -5,49 +7,93 @@ public class SyntaxTasks
     /// <summary>
     /// Задание 1.1: Напишите метод, который принимает три числа и возвращает наибольшее из них.
     /// </summary>
-    public int FindMaxOfThree(int a, int b, int c)
+    public static int FindMaxOfThree(int a, int b, int c)
     {
-        throw new NotImplementedException();
+        int max = c;
+
+        if (b > max)
+            max = b;
+        if (a > max)
+            max = a;
+        return max;        
     }
 
     /// <summary>
     /// Задание 1.2: Напишите метод, который вычисляет сумму всех чисел от 1 до N.
     /// </summary>
-    public int CalculateSumFrom1ToN(int n)
+    public static int CalculateSumFrom1ToN(int n)
     {
-        throw new NotImplementedException();
+        int result = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            result += i;
+        }
+        return result;        
     }
 
     /// <summary>
     /// Задание 1.3: Напишите метод, который проверяет, является ли число простым.
     /// </summary>
-    public bool IsPrime(int number)
+    public static bool IsPrime(int number)
     {
-        throw new NotImplementedException();
+        if (number <= 1) return false; 
+        if (number == 2) return true; 
+        if (number % 2 == 0) return false; // четное, не простое
+        for (int i = 3; i * i <= number; i += 2)
+        {
+            if (number % i == 0) return false;
+        }
+        return true;
     }
 
     /// <summary>
     /// Задание 1.4: Напишите метод, который генерирует массив первых N чисел Фибоначчи.
     /// </summary>
-    public int[] GenerateFibonacciArray(int n)
+    public static int[] GenerateFibonacciArray(int n)
     {
-        throw new NotImplementedException();
+        if (n <= 0) return new int[0];
+        int[] fibo = new int[n];
+        if (n >= 1) fibo[0] = 0;
+        if (n >= 2) fibo[1] = 1;
+        for (int i = 2; i < n; i++) fibo[i] = fibo[i-2] + fibo[i-1];
+        return fibo;
+
     }
 
     /// <summary>
     /// Задание 1.5: Напишите метод, который находит среднее арифметическое элементов массива.
     /// </summary>
-    public double CalculateArrayAverage(int[] numbers)
+    public static double CalculateArrayAverage(int[] numbers)
     {
-        throw new NotImplementedException();
+        double result = 0;
+        if (numbers == null || numbers.Length == 0)
+        {
+            return result;   
+        }
+        
+                foreach (int n in numbers)
+        {
+            result += n;
+        }
+        return result / numbers.Length;
     }
 
     /// <summary>
     /// Задание 1.6: Напишите метод, который проверяет, является ли строка палиндромом (игнорируя регистр).
     /// </summary>
-    public bool IsStringPalindrome(string text)
+    public static bool IsStringPalindrome(string text)
     {
-        throw new NotImplementedException();
+        text = text.ToLowerInvariant();
+
+        for (int left = 0, right = text.Length - 1; left < right; left++, right--)
+        {
+            while (left < right && !char.IsLetterOrDigit(text[left]))
+                left++;
+            while (left < right && !char.IsLetterOrDigit(text[right]))
+                right--;
+            if (text[left] != text[right]) return false;
+        }
+        return true;
     }
 
     /// <summary>
@@ -55,16 +101,68 @@ public class SyntaxTasks
     /// </summary>
     public int[,] TransposeMatrix(int[,] matrix)
     {
-        throw new NotImplementedException();
+        int line = matrix.GetLength(0);
+        int column = matrix.GetLength(1);
+
+        int[,] transmatrix = new int[column, line];
+
+        for (int i = 0; i < line; i++)
+        {
+            for (int j = 0; j < column; j++)
+            {
+                transmatrix[j, i] = matrix[i, j];
+            }
+        }
+        return transmatrix;
     }
 
     /// <summary>
     /// Задание 1.8: Напишите метод, который решает квадратное уравнение ax² + bx + c = 0.
     /// Возвращает массив с корнями (0, 1 или 2 корня). Корни должны быть перечислены по возрастанию.
     /// </summary>
-    public double[] SolveQuadraticEquation(double a, double b, double c)
+    public static double[] SolveQuadraticEquation(double a, double b, double c)
     {
-        throw new NotImplementedException();
+
+        const double zero = 1e-10;
+
+        if (Math.Abs(a) < zero)
+        {
+            if (Math.Abs(b) < zero)
+            {
+                if (Math.Abs(c) < zero)
+                    throw new ArgumentException("Бесконечное число решений");
+                else
+                    return new double[0]; // нет решений
+            }
+            
+            return new double [] { -c / b };
+        }
+        
+        double d = b * b - 4 * a * c; // дискриминант
+
+        if (d > zero) // дискриминант больше 0, два корня
+        {
+            double x1 = (-b - Math.Sqrt(d)) / (2 * a);
+            double x2 = (-b + Math.Sqrt(d)) / (2 * a);
+
+            if (x1 <= x2)
+            {
+                return [x1, x2];
+            }
+            else
+            {
+                return [x2, x1];
+            }
+        }
+        
+        if (d == 0) // вискриминант равен 0, один корень
+        {
+            return new double[] { -b / (2 * a) }; // один корень
+        }
+
+        return new double[0]; // нет корней
+
     }
+
     
 }
